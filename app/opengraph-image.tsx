@@ -16,7 +16,7 @@ export default function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0b0b0d 0%, #1a1305 100%)",
+          background: "linear-gradient(135deg, #0a0d14 0%, #14213a 100%)",
           fontFamily: "sans-serif",
         }}
       >
@@ -25,13 +25,13 @@ export default function Image() {
             width: 140,
             height: 140,
             borderRadius: "50%",
-            background: "#ff9900",
+            background: "#f2c230",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             fontSize: 64,
             fontWeight: 700,
-            color: "#0b0b0d",
+            color: "#0a0d14",
             marginBottom: 36,
           }}
         >
@@ -40,7 +40,7 @@ export default function Image() {
         <div style={{ display: "flex", fontSize: 64, fontWeight: 800, color: "#f5f5f5" }}>
           {profile.name}
         </div>
-        <div style={{ display: "flex", fontSize: 32, color: "#ff9900", marginTop: 12 }}>
+        <div style={{ display: "flex", fontSize: 32, color: "#f2c230", marginTop: 12 }}>
           {profile.handle}
         </div>
       </div>

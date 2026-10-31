@@ -1,6 +1,9 @@
 import { ProfileHeader } from "@/components/ProfileHeader";
 import { LinkList } from "@/components/LinkList";
 
+// Re-genera la página cada hora para que los links con `expiresAt` desaparezcan solos
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col items-center bg-[var(--background)]">

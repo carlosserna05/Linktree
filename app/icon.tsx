@@ -16,11 +16,11 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0b0b0d",
+          background: "#0a0d14",
           borderRadius: 16,
         }}
       >
-        <span style={{ color: "#ff9900", fontSize: 34, fontWeight: 700 }}>{initial}</span>
+        <span style={{ color: "#f2c230", fontSize: 34, fontWeight: 700 }}>{initial}</span>
       </div>
     ),
     { ...size }

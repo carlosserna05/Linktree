@@ -4,7 +4,7 @@ import { profile } from "@/data/links";
 export function ProfileHeader() {
   return (
     <header className="flex flex-col items-center gap-4 px-6 pt-14 pb-8 text-center">
-      <div className="relative h-24 w-24 overflow-hidden rounded-full ring-2 ring-[var(--accent)]/70 ring-offset-4 ring-offset-[var(--background)] shadow-[0_0_40px_-8px_rgba(255,153,0,0.5)] sm:h-28 sm:w-28">
+      <div className="relative h-24 w-24 overflow-hidden rounded-full ring-2 ring-[var(--accent)]/70 ring-offset-4 ring-offset-[var(--background)] shadow-[0_0_40px_-8px_var(--accent-glow)] sm:h-28 sm:w-28">
         <Image
           src={profile.avatarUrl}
           alt={profile.name}
@@ -22,7 +22,7 @@ export function ProfileHeader() {
         <p className="text-sm font-semibold text-[var(--accent)]">{profile.handle}</p>
       </div>
 
-      <p className="max-w-xs text-sm leading-snug text-[var(--muted)] sm:text-base">
+      <p className="max-w-xs whitespace-pre-line text-sm leading-snug text-[var(--muted)] sm:text-base">
         {profile.bio}
       </p>
     </header>

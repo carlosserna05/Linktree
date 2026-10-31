@@ -21,13 +21,14 @@ app/
   opengraph-image.tsx  # imagen OG generada dinámicamente
 components/
   ProfileHeader.tsx    # foto circular + nombre + handle + bio
-  LinkList.tsx         # ordena y renderiza los LinkButton
+  LinkList.tsx         # renderiza los LinkButton vigentes, con títulos de grupo
   LinkButton.tsx        # botón "pill" individual con animación y tracking
   icons.tsx            # set de iconos SVG inline (sin dependencias)
 data/
   links.ts             # ← EDITA AQUÍ tu perfil y tus links
 lib/
   analytics.ts         # utm params + evento de tracking de clics
+  links.ts             # filtra links vencidos (expiresAt) y los ordena
 ```
 
 ## Cómo editar tus links y tu perfil
@@ -47,9 +48,9 @@ export const links: LinkItem[] = [
     id: "tiktok",              // único, no lo cambies una vez publicado (se usa en el tracking)
     title: "Sígueme en TikTok",
     url: "https://www.tiktok.com/@tuusuario",
-    icon: "tiktok",             // opcional: tiktok | instagram | youtube | whatsapp | spotify | x | email | web
+    icon: "tiktok",             // opcional: tiktok | instagram | youtube | whatsapp | spotify | x | email | web | calendar
     order: 1,                   // controla el orden en la lista
-    highlighted: true,          // opcional: lo pinta en naranja para destacarlo
+    highlighted: true,          // opcional: lo pinta en dorado para destacarlo
     utm: { source: "linkbio", medium: "social", campaign: "tiktok_profile" }, // opcional
   },
   // ...más links
@@ -61,8 +62,19 @@ Para tu foto de perfil: sustituye `public/avatar.png` por tu imagen (jpg/png/web
 ## Paleta e identidad visual
 
 - **Tipografía**: [Bebas Neue](https://fonts.google.com/specimen/Bebas+Neue) para el nombre/títulos (`font-display`), [Nunito](https://fonts.google.com/specimen/Nunito) para el resto del texto (fuente por defecto, `font-sans`).
-- **Color de acento**: naranja `#FF9900` (tipo AWS), con hover `#FFAC31`.
-- **Fondo**: oscuro (`#0B0B0D`) — se eligió fondo oscuro porque el naranja contrasta mucho mejor sobre negro que sobre blanco (más legible y con más "pop"), es la estética dominante en las páginas link-in-bio de creadores, y es más cómodo para la vista en el navegador in-app de TikTok. Todos los tokens de color están centralizados como variables CSS en [`app/globals.css`](app/globals.css) si quieres ajustarlos.
+- **Color de acento**: oro `#F2C230` (hover `#FFD34D`), tomado del amarillo de los títulos de los videos del perfil de TikTok.
+- **Fondo**: azul noche `#0A0D14` con superficies `#121826`, a juego con los grises azulados del cuarto y la ropa de los videos. Azul de apoyo `#4FA8D1` (`--info`) para detalles secundarios.
+- Todos los tokens de color están centralizados como variables CSS en [`app/globals.css`](app/globals.css) si quieres ajustarlos.
+
+## Links temporales (eventos del video)
+
+Para un video con varios eventos, añade un botón por evento en [`data/links.ts`](data/links.ts) con estos campos opcionales:
+
+- `group: "Eventos tech en Lima · Noviembre"` — los links consecutivos con el mismo `group` salen bajo ese título.
+- `expiresAt: "2026-11-21"` — pasado ese día el botón se oculta solo (la página se regenera cada hora en Vercel).
+- `icon: "calendar"` y un `order` menor que el resto para que queden arriba.
+
+Para quitarlos antes, borra el item.
 
 ## Tracking de clics
 
@@ -94,12 +106,10 @@ Abre [http://localhost:3000](http://localhost:3000). El sitio está optimizado m
 2. **Importa el repo en Vercel**: entra a [vercel.com/new](https://vercel.com/new), conecta tu cuenta de GitHub y selecciona el repositorio. Vercel detecta Next.js automáticamente, no hace falta configurar nada.
 3. **Variables de entorno**: en el proyecto de Vercel → *Settings → Environment Variables*, añade `NEXT_PUBLIC_SITE_URL` con tu dominio final (ej. `https://tuusuario.com`), tal como se indica en [`.env.example`](.env.example). Esto asegura que las meta tags de Open Graph apunten a la URL correcta cuando compartas el link.
 4. **Deploy**: Vercel construye y publica automáticamente. Cada push a `main` genera un nuevo deploy en producción; cada PR genera un preview.
-5. **Activa Vercel Analytics** (opcional pero recomendado): en el proyecto → pestaña *Analytics* → *Enable*. Empezarás a ver los eventos `link_click` de cada botón sin tocar código.
+5. **Activa Vercel Analytics** (opcional): en el proyecto → pestaña *Analytics* → *Enable*. Verás las visitas; los eventos personalizados `link_click` (clics por botón) pueden requerir un plan de pago de Vercel, revísalo en tu dashboard. Alternativa gratuita: Google Analytics.
 6. **Dominio propio**:
    - En el proyecto de Vercel → *Settings → Domains* → añade tu dominio (ej. `tuusuario.com` o un subdominio como `link.tuusuario.com`).
-   - Vercel te da los registros DNS a configurar:
-     - Dominio raíz (`tuusuario.com`): registro **A** apuntando a `76.76.21.21`.
-     - Subdominio (`link.tuusuario.com`): registro **CNAME** apuntando a `cname.vercel-dns.com`.
+   - Vercel te muestra los registros DNS a configurar (un **A** para el dominio raíz o un **CNAME** para un subdominio). Copia exactamente los valores que te indique la pantalla, porque pueden cambiar con el tiempo.
    - Añade esos registros en el panel DNS de donde compraste el dominio (Namecheap, GoDaddy, etc.). La propagación puede tardar desde minutos hasta un par de horas.
    - Vercel emite el certificado SSL automáticamente en cuanto detecta el DNS correcto (https funciona solo, sin configuración extra).
 7. **Pega el link en TikTok**: ve a tu perfil de TikTok → *Editar perfil* → *Sitio web*, y pega tu dominio (o la URL `https://tu-proyecto.vercel.app` si aún no tienes dominio propio).

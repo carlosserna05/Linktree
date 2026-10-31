@@ -6,7 +6,8 @@ export type LinkIconName =
   | "spotify"
   | "x"
   | "email"
-  | "web";
+  | "web"
+  | "calendar";
 
 export interface UtmParams {
   source?: string;
@@ -22,8 +23,12 @@ export interface LinkItem {
   icon?: LinkIconName;
   /** Los links se ordenan ascendentemente por este número */
   order: number;
-  /** Lo pinta con el color de acento naranja, para destacar tu link principal */
+  /** Lo pinta con el color de acento dorado, para destacar tu link principal */
   highlighted?: boolean;
+  /** Los links consecutivos con el mismo `group` se muestran bajo un título (ej. "Eventos tech en Lima") */
+  group?: string;
+  /** Fecha ISO (ej. "2026-11-21"); pasado ese día el botón se oculta solo */
+  expiresAt?: string;
   /** Se añaden como query params a la url al hacer clic, útil para medir en GA/Vercel Analytics de dónde viene el tráfico */
   utm?: UtmParams;
 }
@@ -37,51 +42,49 @@ export interface Profile {
 }
 
 export const profile: Profile = {
-  name: "Tu Nombre",
-  handle: "@tuusuario",
-  bio: "Creando contenido sobre lo que me apasiona ✨ Nuevo video cada semana.",
+  name: "Carlos Serna",
+  handle: "@carlossserna",
+  bio: "El protagonismo anda esperando\nTech | Data | Just Me",
   avatarUrl: "/avatar.png",
 };
 
+const EVENTS_GROUP = "Eventos tech en Lima · Noviembre";
+
 export const links: LinkItem[] = [
+  // Eventos del video. Verifica las fechas el día que grabes.
   {
-    id: "tiktok",
-    title: "Sígueme en TikTok",
-    url: "https://www.tiktok.com/@tuusuario",
-    icon: "tiktok",
+    id: "devfest-lima",
+    title: "DevFest Lima · 14 NOV",
+    url: "https://gdg.community.dev/events/details/google-gdg-lima-presents-devfest-lima-2026-dia-ii/",
+    icon: "calendar",
     order: 1,
-    highlighted: true,
-    utm: { source: "linkbio", medium: "social", campaign: "tiktok_profile" },
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-14",
+  },
+  {
+    id: "devfest-open-lima",
+    title: "DevFest Open · 21 NOV",
+    url: "https://gdg.community.dev/events/details/google-gdg-open-presents-devfest-open-lima-2026/cohost-gdg-cloud-lima/",
+    icon: "calendar",
+    order: 2,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-21",
+  },
+  {
+    id: "peruhack",
+    title: "PERÚHACK · 21 NOV · Gratis",
+    url: "https://peruhack.org/",
+    icon: "calendar",
+    order: 3,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-21",
   },
   {
     id: "instagram",
     title: "Instagram",
-    url: "https://www.instagram.com/tuusuario",
+    url: "https://www.instagram.com/carlosserna__/",
     icon: "instagram",
-    order: 2,
-    utm: { source: "linkbio", medium: "social", campaign: "instagram" },
-  },
-  {
-    id: "youtube",
-    title: "YouTube",
-    url: "https://www.youtube.com/@tuusuario",
-    icon: "youtube",
-    order: 3,
-    utm: { source: "linkbio", medium: "social", campaign: "youtube" },
-  },
-  {
-    id: "whatsapp",
-    title: "Escríbeme por WhatsApp",
-    url: "https://wa.me/000000000000",
-    icon: "whatsapp",
     order: 4,
-  },
-  {
-    id: "web",
-    title: "Mi sitio web",
-    url: "https://tudominio.com",
-    icon: "web",
-    order: 5,
-    utm: { source: "linkbio", medium: "social", campaign: "website" },
+    utm: { source: "linkbio", medium: "social", campaign: "instagram" },
   },
 ];

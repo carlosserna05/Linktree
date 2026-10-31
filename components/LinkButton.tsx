@@ -19,8 +19,8 @@ export function LinkButton({ link }: { link: LinkItem }) {
       transition={{ type: "spring", stiffness: 420, damping: 28 }}
       className={`relative flex w-full items-center justify-center rounded-full px-5 py-4 text-center text-[15px] font-bold transition-colors duration-200 sm:text-base ${
         link.highlighted
-          ? "bg-[var(--accent)] text-[#141414] hover:bg-[var(--accent-hover)]"
-          : "border border-white/10 bg-[var(--surface)] text-[var(--foreground)] hover:bg-[var(--surface-hover)]"
+          ? "bg-[var(--accent)] text-[var(--accent-foreground)] hover:bg-[var(--accent-hover)]"
+          : "border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:bg-[var(--surface-hover)]"
       }`}
     >
       {link.icon && (

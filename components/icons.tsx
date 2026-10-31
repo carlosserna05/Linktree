@@ -73,7 +73,17 @@ function WebIcon({ className }: IconProps) {
   );
 }
 
+function CalendarIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="3" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </svg>
+  );
+}
+
 const ICONS: Record<LinkIconName, (props: IconProps) => React.JSX.Element> = {
+  calendar: CalendarIcon,
   tiktok: TikTokIcon,
   instagram: InstagramIcon,
   youtube: YoutubeIcon,

@@ -36,6 +36,7 @@ export interface LinkItem {
 export interface Profile {
   name: string;
   handle: string;
+  /** No se muestra en la página; solo es la descripción que aparece al compartir el link */
   bio: string;
   /** Ruta dentro de /public, ej. "/avatar.jpg" */
   avatarUrl: string;
@@ -45,28 +46,56 @@ export const profile: Profile = {
   name: "Carlos Serna",
   handle: "@carlossserna",
   bio: "El protagonismo anda esperando\nTech | Data | Just Me",
-  avatarUrl: "/avatar.png",
+  avatarUrl: "/avatar.jpg",
 };
 
 const EVENTS_GROUP = "Eventos tech en Lima · Noviembre";
+const SOCIAL_GROUP = "Redes sociales";
 
 export const links: LinkItem[] = [
-  // Eventos del video. Verifica las fechas el día que grabes.
+  // Eventos ordenados por fecha. Verifica fechas y enlaces antes de publicar.
   {
-    id: "devfest-lima",
-    title: "DevFest Lima · 14 NOV",
-    url: "https://gdg.community.dev/events/details/google-gdg-lima-presents-devfest-lima-2026-dia-ii/",
+    id: "burpsuite-day",
+    title: "Burp Suite Day Perú · 7 NOV",
+    url: "https://burpsuitedayperu.com/",
     icon: "calendar",
     order: 1,
     group: EVENTS_GROUP,
+    expiresAt: "2026-11-07",
+  },
+  {
+    id: "devfest-lima",
+    title: "DevFest Lima · 13-14 NOV",
+    url: "https://gdg.community.dev/events/details/google-gdg-lima-presents-devfest-lima-2026-dia-ii/",
+    icon: "calendar",
+    order: 2,
+    group: EVENTS_GROUP,
     expiresAt: "2026-11-14",
+  },
+  {
+    id: "black-alpaca",
+    title: "Black Alpaca Security · 14 NOV",
+    url: "https://blackalpaca.org/",
+    icon: "calendar",
+    order: 3,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-14",
+  },
+  {
+    id: "dmc-data-ai-summit",
+    title: "DMC Data & AI Summit · 20 NOV",
+    url: "https://dmc.pe/descubre/summit-2026",
+    icon: "calendar",
+    order: 5,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-20",
   },
   {
     id: "devfest-open-lima",
     title: "DevFest Open · 21 NOV",
     url: "https://gdg.community.dev/events/details/google-gdg-open-presents-devfest-open-lima-2026/cohost-gdg-cloud-lima/",
     icon: "calendar",
-    order: 2,
+    order: 6,
     group: EVENTS_GROUP,
     expiresAt: "2026-11-21",
   },
@@ -75,16 +104,44 @@ export const links: LinkItem[] = [
     title: "PERÚHACK · 21 NOV · Gratis",
     url: "https://peruhack.org/",
     icon: "calendar",
-    order: 3,
+    order: 7,
     group: EVENTS_GROUP,
     expiresAt: "2026-11-21",
   },
   {
+    id: "databricks-live",
+    title: "Databricks Live · 24 NOV",
+    url: "https://events.databricks.com/fy27q4-ev-databricks-live-peru/waitlist?i=Ym4EoBh28DUIft7geS_xo_lLSpCVRIX3",
+    icon: "calendar",
+    order: 8,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-24",
+  },
+  {
+    id: "redhat-summit-connect",
+    title: "Red Hat Summit Connect · 26 NOV",
+    url: "https://www.redhat.com/en/summit/connect/latam/lima-2026",
+    icon: "calendar",
+    order: 9,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-26",
+  },
+  {
+    id: "aws-student-community-day",
+    title: "AWS Student Community Day · 28 NOV",
+    url: "https://www.aws-uni.com/student-community-day",
+    icon: "calendar",
+    order: 10,
+    group: EVENTS_GROUP,
+    expiresAt: "2026-11-28",
+  },
+  {
     id: "instagram",
-    title: "Instagram",
+    title: "INSTAGRAM",
     url: "https://www.instagram.com/carlosserna__/",
     icon: "instagram",
-    order: 4,
+    order: 12,
+    group: SOCIAL_GROUP,
     utm: { source: "linkbio", medium: "social", campaign: "instagram" },
   },
 ];

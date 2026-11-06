@@ -15,7 +15,11 @@ export function LinkList() {
         return (
           <Fragment key={link.id}>
             {startsGroup && (
-              <li className="pt-1 text-center font-display text-xl uppercase tracking-wide text-[var(--accent)]">
+              <li
+                className={`pt-1 text-center font-display text-xl uppercase tracking-wide text-[var(--accent)] ${
+                  prev ? "mt-3" : ""
+                }`}
+              >
                 {link.group}
               </li>
             )}

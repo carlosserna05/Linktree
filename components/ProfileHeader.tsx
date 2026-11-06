@@ -21,10 +21,6 @@ export function ProfileHeader() {
         </h1>
         <p className="text-sm font-semibold text-[var(--accent)]">{profile.handle}</p>
       </div>
-
-      <p className="max-w-xs whitespace-pre-line text-sm leading-snug text-[var(--muted)] sm:text-base">
-        {profile.bio}
-      </p>
     </header>
   );
 }

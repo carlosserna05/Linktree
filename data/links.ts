@@ -50,6 +50,7 @@ export const profile: Profile = {
 };
 
 const EVENTS_GROUP = "Eventos tech en Lima · Noviembre";
+const COMMUNITY_GROUP = "Comunidad Databricks";
 const SOCIAL_GROUP = "Redes sociales";
 
 export const links: LinkItem[] = [
@@ -134,6 +135,14 @@ export const links: LinkItem[] = [
     order: 10,
     group: EVENTS_GROUP,
     expiresAt: "2026-11-28",
+  },
+  {
+    id: "databricks-whatsapp",
+    title: "Canal de WhatsApp",
+    url: "https://whatsapp.com/channel/0029Vb4sA0tAYlUNFcKSCF1O",
+    icon: "whatsapp",
+    order: 11,
+    group: COMMUNITY_GROUP,
   },
   {
     id: "instagram",
